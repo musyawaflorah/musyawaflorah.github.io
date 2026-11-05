@@ -1,0 +1,13 @@
+{
+  "name": "Sharon Nduku Mutiso",
+  "email": "musyawaflorah@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/sharon-mutiso/",
+  "siteUrl": null,
+  "nav": [
+    { "href": "", "label": "Home" },
+    { "href": "about/", "label": "About" },
+    { "href": "research/", "label": "Research" },
+    { "href": "progress/", "label": "Progress" },
+    { "href": "contact/", "label": "Contact" }
+  ]
+}

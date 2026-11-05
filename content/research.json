@@ -1,0 +1,51 @@
+{
+  "_howToUpdate": "Add new log entries to the TOP of 'log'. Add methods, audits, code, reports, and publications to the matching 'items' list under 'resources'. Only link to things that really exist. Run 'npm run check' before publishing. README.md has examples.",
+
+  "log": [
+    {
+      "date": "2026-11-05",
+      "category": "Project status",
+      "title": "Research question defined; protocol development underway",
+      "summary": "The research question for this project has been defined and protocol development is underway. No experiments, dataset downloads, or validation have been carried out yet.",
+      "links": []
+    }
+  ],
+
+  "resources": [
+    {
+      "id": "methods",
+      "title": "Methods and protocol",
+      "description": "The study protocol, analysis plans, and later amendments.",
+      "emptyText": "Protocol in development. Nothing has been released yet.",
+      "items": []
+    },
+    {
+      "id": "dataset-audits",
+      "title": "Dataset audits",
+      "description": "Findings on dataset suitability, patient-level labels, patient identities, and repeated samples.",
+      "emptyText": "No audits have been completed yet.",
+      "items": []
+    },
+    {
+      "id": "code",
+      "title": "Code",
+      "description": "Versioned repositories for pipelines, models, and evaluation.",
+      "emptyText": "No code has been released yet.",
+      "items": []
+    },
+    {
+      "id": "reports",
+      "title": "Reports",
+      "description": "Experiment write-ups, including false positives, missed cancers, calibration, and limitations.",
+      "emptyText": "No reports have been released yet.",
+      "items": []
+    },
+    {
+      "id": "publications",
+      "title": "Publications",
+      "description": "Preprints and peer-reviewed papers arising from this work.",
+      "emptyText": "No publications yet.",
+      "items": []
+    }
+  ]
+}
