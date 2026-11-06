@@ -139,7 +139,7 @@ ${body}
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <p>This is an independent personal website. It is not sponsored or endorsed by my employer, AbbVie. Research described here is exploratory and is not medical advice.</p>
+      <p>This is an independent personal website. It is not sponsored or endorsed by my employer. Research described here is exploratory and is not medical advice.</p>
       <p>&copy; ${new Date().getFullYear()} ${esc(config.name)} &middot; <a href="mailto:${esc(config.email)}">Email</a> &middot; <a href="${esc(config.linkedin)}">LinkedIn</a></p>
     </div>
   </footer>
