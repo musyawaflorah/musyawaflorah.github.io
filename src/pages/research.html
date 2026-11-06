@@ -1,13 +1,13 @@
 <!--
 title: Research | Sharon Nduku Mutiso
-description: A planned exploratory project on whether stool microbiome AI for colorectal cancer incorrectly flags Crohn's disease samples, and whether specificity can be improved. Currently in proposal and protocol development.
+description: A planned exploratory benchmark measuring how often stool microbiome AI for colorectal cancer raises false alerts for people with Crohn's disease and other conditions. Currently in proposal and protocol development.
 path: research/
 -->
 <header class="page-hero dark">
   <canvas class="flow network" aria-hidden="true"></canvas>
   <div class="wrap">
     <p class="eyebrow fade-up" style="--delay:0.05s">Working project title</p>
-    <h1 class="h1-long fade-up" style="--delay:0.12s">Evaluating and Improving the Specificity of Stool Microbiome AI for Colorectal Cancer in the Presence of Crohn&rsquo;s Disease</h1>
+    <h1 class="h1-long fade-up" style="--delay:0.12s">A Disease-Specificity Benchmark for Stool Microbiome AI in Colorectal Cancer</h1>
     <p class="status-line fade-up" style="--delay:0.3s"><span>Status</span> <span class="pill" style="margin:0"><span class="pulse" aria-hidden="true"></span>Proposal and protocol development</span></p>
   </div>
 </header>
@@ -17,16 +17,16 @@ path: research/
     <div class="prose">
       <div class="reveal">
         <h2>Research question</h2>
-        <blockquote class="question">Do models developed to distinguish colorectal cancer from control samples incorrectly flag Crohn&rsquo;s disease samples, and can incorporating inflammatory-disease information improve specificity while preserving cancer sensitivity?</blockquote>
+        <blockquote class="question">How often do stool microbiome models built to detect colorectal cancer raise false alerts for people with Crohn&rsquo;s disease and other conditions, and can adding disease information improve specificity while preserving cancer sensitivity?</blockquote>
       </div>
 
       <div class="reveal">
         <h2>Why ask it</h2>
-        <p>A model trained only on colorectal cancer and control samples has not been asked to tell cancer apart from other conditions that affect the gut. Inflammatory bowel disease, including Crohn&rsquo;s disease, is also associated with changes in the gut microbiome. This project sets out to measure whether that leads to false alarms, and whether adding inflammatory-disease information helps without causing more cancers to be missed.</p>
+        <p>A model trained only on colorectal cancer and control samples has not been asked to tell cancer apart from other conditions that affect the gut. Inflammatory bowel disease, including Crohn&rsquo;s disease, is also associated with changes in the gut microbiome. This project sets out to measure whether that leads to false alerts, beginning with Crohn&rsquo;s disease, and whether adding disease information helps without causing more cancers to be missed.</p>
       </div>
 
       <h2 class="reveal">Where the project stands</h2>
-      <p class="reveal">Only the items marked <strong>Done</strong> or <strong>In progress</strong> have started. No experiments, dataset downloads, validation, or publications have happened.</p>
+      <p class="reveal">Only the items marked <strong>Done</strong> or <strong>In progress</strong> have started. No microbiome profiles have been downloaded, and no experiments, validation, or publications have happened.</p>
       <ol class="stages">
         <li class="stage stage-done reveal"><span class="status status-done">Done</span> <span>Define the research question</span></li>
         <li class="stage stage-progress reveal"><span class="status status-progress">In progress</span> <span>Develop the proposal and protocol</span></li>
@@ -34,8 +34,11 @@ path: research/
         <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Check patient identities and repeated samples</span></li>
         <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Build reproducible ETL pipelines</span></li>
         <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Compare cancer-versus-control models with approaches incorporating Crohn&rsquo;s disease information</span></li>
+        <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Compare false alerts between Crohn&rsquo;s patients and controls from the same study</span></li>
         <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Evaluate on held-out studies</span></li>
-        <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Report false positives, missed cancers, calibration, and limitations</span></li>
+        <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Report false alerts, missed cancers, calibration, and limitations</span></li>
+        <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Build an open-source benchmark that researchers can use to test their own models</span></li>
+        <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Extend testing to ulcerative colitis, adenoma, type 2 diabetes, and other conditions where the audit supports it</span></li>
         <li class="stage reveal"><span class="status status-planned">Planned</span> <span>Version code and document experiments throughout</span></li>
       </ol>
 
