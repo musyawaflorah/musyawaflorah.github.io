@@ -47,6 +47,7 @@ Also update the stage list on [src/pages/research.html](src/pages/research.html)
 | `content/research.json` | Progress log and resources |
 | `src/pages/*.html` | Page text. The comment at the top of each file holds its title, description, and path |
 | `src/assets/styles.css` | Colors, type, and layout. The palette is at the top of the file |
+| `src/assets/site.js` | Motion: home banner animation (microbes, pipeline, model), network on the other banners, scroll effects, and the home page illustration. Pages stay readable without it |
 | `site.config.json` | Name, email, LinkedIn, navigation |
 | `scripts/` | Build, preview server, and checks |
 | `.github/workflows/deploy.yml` | Deployment to GitHub Pages |

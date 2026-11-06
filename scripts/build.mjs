@@ -114,10 +114,16 @@ function renderPage(page) {
   <meta property="og:description" content="${esc(page.description)}">
   <meta name="theme-color" content="#12294a">
   <link rel="icon" href="${base}assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
   <link rel="stylesheet" href="${base}assets/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="${base}assets/site.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="progress-line" aria-hidden="true"></div>
   <header class="site-header">
     <div class="wrap">
       <a class="site-name" href="${base}">${esc(config.name)}</a>
@@ -129,9 +135,7 @@ function renderPage(page) {
     </div>
   </header>
   <main id="main">
-    <div class="wrap">
 ${body}
-    </div>
   </main>
   <footer class="site-footer">
     <div class="wrap">
@@ -139,6 +143,7 @@ ${body}
       <p>&copy; ${new Date().getFullYear()} ${esc(config.name)} &middot; <a href="mailto:${esc(config.email)}">Email</a> &middot; <a href="${esc(config.linkedin)}">LinkedIn</a></p>
     </div>
   </footer>
+  <button class="motion-toggle" type="button" aria-pressed="false">Pause motion</button>
 </body>
 </html>
 `;

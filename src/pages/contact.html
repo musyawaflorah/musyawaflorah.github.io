@@ -3,21 +3,26 @@ title: Contact | Sharon Nduku Mutiso
 description: How to contact Sharon Nduku Mutiso by email or LinkedIn.
 path: contact/
 -->
-<header class="page-head">
-  <h1>Contact</h1>
-  <p class="lede">I welcome conversations about reliable healthcare AI, data engineering, and this research. Email is the best way to reach me.</p>
+<header class="page-hero dark">
+  <canvas class="flow network" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <h1><span class="line"><span>Contact</span></span></h1>
+    <p class="lede fade-up" style="--delay:0.25s">I welcome conversations about reliable healthcare AI, data engineering, and this research. Email is the best way to reach me.</p>
+  </div>
 </header>
 
-<div class="prose">
-  <dl class="contact-list">
-    <div>
-      <dt>Email</dt>
-      <dd><a href="mailto:{{email}}">{{email}}</a></dd>
+<div class="page-body">
+  <div class="wrap">
+    <div class="contact-cards">
+      <a class="card contact-card reveal" href="mailto:{{email}}">
+        <strong>Email</strong>
+        <span>{{email}}</span>
+      </a>
+      <a class="card contact-card reveal" style="--stagger:0.08s" href="{{linkedin}}">
+        <strong>LinkedIn</strong>
+        <span>linkedin.com/in/sharon-mutiso</span>
+      </a>
     </div>
-    <div>
-      <dt>LinkedIn</dt>
-      <dd><a href="{{linkedin}}">linkedin.com/in/sharon-mutiso</a></dd>
-    </div>
-  </dl>
-  <p class="note">I can&rsquo;t offer medical advice or interpret individual test results. Please take health questions to a qualified clinician.</p>
+    <p class="note reveal">I can&rsquo;t offer medical advice or interpret individual test results. Please take health questions to a qualified clinician.</p>
+  </div>
 </div>
