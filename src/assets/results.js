@@ -31,9 +31,10 @@
   function findings() {
     var lr = data.models[PRIMARY], rf = data.models['Random forest'], gb = data.models['Gradient boosting'];
     var stage = function (m, s) { return m.stages.filter(function (x) { return x.stage === s; })[0]; };
+    var noY = function (m, s) { return m.stagesNoYachida.filter(function (x) { return x.stage === s; })[0]; };
     var aucs = [lr.meanAuroc, rf.meanAuroc, gb.meanAuroc];
     var items = [
-      ['Early cancers were often missed', 'Stage I sensitivity was ' + pct(stage(lr, 'I').sensitivity) + ' with the primary model and ' + pct(stage(gb, 'I').sensitivity) + ' with gradient boosting, compared with ' + pct(stage(lr, 'II').sensitivity) + ' and ' + pct(stage(gb, 'II').sensitivity) + ' at stage II.'],
+      ['Early-stage detection depended heavily on the study', 'Stage I sensitivity was ' + pct(stage(lr, 'I').sensitivity) + ' with the primary model and ' + pct(stage(gb, 'I').sensitivity) + ' with gradient boosting. Without one large Japanese study, it was ' + pct(noY(lr, 'I').sensitivity) + ' and ' + pct(noY(gb, 'I').sensitivity) + '. Results for stage 0 were low with all three models.'],
       ['Stronger models raised more off-target alerts', 'The pooled excess alert rate was ' + pts(lr.pooled.estimate) + ' points with logistic regression and ' + pts(gb.pooled.estimate) + ' points with gradient boosting. Differences in alert rates also reflect the sensitivity each threshold reached.'],
       ['Alerts varied by condition', 'Liver cirrhosis and atherosclerotic cardiovascular disease stood out in single studies, while most other conditions were close to zero. These results come from single cohorts and need replication.'],
       ['Cross-study performance was modest', 'Mean AUROC on unseen studies ranged from ' + Math.min.apply(null, aucs).toFixed(2) + ' to ' + Math.max.apply(null, aucs).toFixed(2) + ' across the three models.'],
