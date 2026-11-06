@@ -5,6 +5,13 @@
     {
       "date": "2026-11-06",
       "category": "Project status",
+      "title": "Planned main analysis updated",
+      "summary": "The planned main analysis is now a comparison across multiple conditions, with Crohn's disease as a descriptive pilot. No microbiome profiles have been downloaded, and no experiments or validation have been carried out.",
+      "links": []
+    },
+    {
+      "date": "2026-11-06",
+      "category": "Project status",
       "title": "Research question updated; protocol development continues",
       "summary": "The research question now covers false alerts for people with Crohn's disease and other conditions, and the plan includes an open-source benchmark. No microbiome profiles have been downloaded, and no experiments or validation have been carried out.",
       "links": []
