@@ -22,13 +22,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - id: pages
-        uses: actions/configure-pages@v5
-      # SITE_URL is the URL GitHub reports for this deployment. It only changes to a
-      # custom domain once that domain has been set in the repository's Pages settings.
+      - uses: actions/configure-pages@v5
+      # The public URL for canonical links and the sitemap is siteUrl in site.config.json.
       - run: npm run check
-        env:
-          SITE_URL: ${{ steps.pages.outputs.base_url }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

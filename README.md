@@ -53,11 +53,11 @@ Also update the stage list on [src/pages/research.html](src/pages/research.html)
 
 ## Public URL, canonical links, and sitemap
 
-The GitHub workflow passes the URL GitHub reports for the live site to the build as `SITE_URL`. Canonical links and `sitemap.xml` are generated only when that value exists, so a local build leaves them out. Don't hard-code a domain before you own it and it is deployed.
+Canonical links and `sitemap.xml` use `siteUrl` in `site.config.json`, currently `https://sharonmutiso.com`. If you ever move the site, update that value only after you own the new domain and it is deployed. If `siteUrl` is empty, canonical links and the sitemap are left out.
 
-## Connect a custom domain
+## Custom domain
 
-After registering the domain, add these DNS records at the registrar:
+`sharonmutiso.com` is registered at Porkbun and uses these DNS records. Keep them in place, and renew the domain before it expires on November 5, 2027 (unless auto-renew is on):
 
 | Type | Host | Value |
 | --- | --- | --- |
@@ -65,9 +65,9 @@ After registering the domain, add these DNS records at the registrar:
 | A | (root) | 185.199.109.153 |
 | A | (root) | 185.199.110.153 |
 | A | (root) | 185.199.111.153 |
-| CNAME | www | YOUR-GITHUB-USERNAME.github.io |
+| CNAME | www | musyawaflorah.github.io |
 
-Then, in the repository, open **Settings > Pages**, enter the domain, and turn on **Enforce HTTPS** once it becomes available. Re-run the deploy workflow so the canonical links and sitemap pick up the new domain.
+The domain is set in the repository under **Settings > Pages**, along with the **Enforce HTTPS** option.
 
 ## Content rules
 
