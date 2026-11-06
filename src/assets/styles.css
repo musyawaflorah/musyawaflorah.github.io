@@ -372,6 +372,7 @@ html[data-motion="off"] { scroll-behavior: auto; }
   .site-nav a { padding: 0.3rem 0.42rem; font-size: 0.86rem; }
   .site-nav { margin-left: -0.42rem; }
   .motion-toggle { right: 0.6rem; bottom: 0.6rem; }
+  .hero-caption { padding-right: 7.25rem; }
 }
 
 @media print {
