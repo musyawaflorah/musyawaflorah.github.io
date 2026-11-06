@@ -1,0 +1,98 @@
+<!--
+title: Preliminary Results | Sharon Nduku Mutiso
+description: Preliminary, exploratory results from a benchmark testing how stool microbiome AI for colorectal cancer behaves across other conditions and cancer stages. Not peer reviewed.
+path: results/
+-->
+<header class="page-hero dark">
+  <canvas class="flow network" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow fade-up" style="--delay:0.05s">Disease-specificity benchmark</p>
+    <h1 class="fade-up" style="--delay:0.12s">Preliminary results</h1>
+    <p class="status-line fade-up" style="--delay:0.3s"><span>Status</span> <span class="pill" style="margin:0"><span class="pulse" aria-hidden="true"></span>Exploratory, not peer reviewed</span></p>
+  </div>
+</header>
+
+<div class="page-body">
+  <div class="wrap">
+    <aside class="callout dash-notice" aria-label="How to read these results">
+      <h2>Read this first</h2>
+      <p>This is a first exploratory run on public research data, last updated November 6, 2026. It hasn't had advisor or peer review, and disease labels are still being checked against the original papers. These numbers may change.</p>
+      <p>This isn't a diagnostic test, a screening tool, or medical advice. Please take health questions to a qualified clinician.</p>
+    </aside>
+
+    <section class="dash-section" aria-labelledby="findings-title">
+      <h2 id="findings-title">What the first run shows</h2>
+      <div class="dash-findings" id="findings"></div>
+      <div class="dash-switch" role="group" aria-label="Choose a model">
+        <span>Model</span>
+        <div id="model-buttons"></div>
+      </div>
+      <p class="note">Logistic regression was chosen as the primary model before any results were seen. The other two are sensitivity analyses.</p>
+      <div class="dash-tiles" id="tiles"></div>
+    </section>
+
+    <section class="dash-section" aria-labelledby="alerts-title">
+      <h2 id="alerts-title">Cancer-model alerts in other conditions</h2>
+      <p class="dash-lead" id="alerts-lead"></p>
+      <div class="dash-chart" id="forest"></div>
+      <p class="note">Each row compares adults with a condition to healthy adult controls from the same study and country. Dots show the difference in alert rates, and lines show 95% intervals. A filled dot means the interval excludes zero, without adjustment for multiple comparisons. Cancer status usually isn't confirmed, so an alert isn't a confirmed false positive.</p>
+      <details class="dash-table"><summary>View as a table</summary><div id="forest-table"></div></details>
+    </section>
+
+    <section class="dash-section" aria-labelledby="stage-title">
+      <h2 id="stage-title">Detection by cancer stage</h2>
+      <p class="dash-lead" id="stage-lead"></p>
+      <div class="dash-switch" role="group" aria-label="Choose which studies to include">
+        <span>Studies</span>
+        <div id="stage-buttons"></div>
+      </div>
+      <div class="dash-chart" id="stages"></div>
+      <p class="note">Bars show the share of people with cancer flagged by a model trained on other studies, with 95% intervals. Samples were collected at or after diagnosis, so this shows detection at a stage, not prediction before diagnosis.</p>
+      <details class="dash-table"><summary>View as a table</summary><div id="stage-table"></div></details>
+    </section>
+
+    <section class="dash-section" aria-labelledby="studies-title">
+      <h2 id="studies-title">Performance on studies the model never saw</h2>
+      <p class="dash-lead" id="studies-lead"></p>
+      <div class="dash-table-wrap" id="study-table"></div>
+    </section>
+
+    <section class="dash-section" aria-labelledby="aware-title">
+      <h2 id="aware-title">Did teaching the model about other diseases help?</h2>
+      <div id="aware"></div>
+    </section>
+
+    <section class="dash-section" aria-labelledby="species-title">
+      <h2 id="species-title">Which microbes the model relied on</h2>
+      <p class="dash-lead">These species had the largest weights in the primary model. They show what the model used, not what causes cancer.</p>
+      <div class="dash-species" id="species"></div>
+    </section>
+
+    <section class="dash-section prose" aria-labelledby="limits-title">
+      <h2 id="limits-title">What these results can't show</h2>
+      <ul>
+        <li><strong>Why alerts happen:</strong> differences could reflect a condition, age, medication, geography, or how a study was run.</li>
+        <li><strong>Confirmed false positives:</strong> comparison cohorts usually weren't confirmed to be cancer-free.</li>
+        <li><strong>Clinical performance:</strong> these models aren't approved tests and shouldn't guide care.</li>
+        <li><strong>Prediction before diagnosis:</strong> samples were collected at or after diagnosis.</li>
+        <li><strong>Reliable results for small groups:</strong> some rows include only a few people, and the Crohn's disease pilot has 43 adults.</li>
+        <li><strong>Truly healthy controls in every study:</strong> one Crohn's study's "healthy" metadata label covers non-IBD participants, including some with symptoms.</li>
+        <li><strong>One-study independence:</strong> several conditions come from one study, and one large cohort supplies most of the type 2 diabetes data.</li>
+      </ul>
+    </section>
+
+    <section class="dash-section prose" aria-labelledby="methods-title">
+      <h2 id="methods-title">How it was done</h2>
+      <p>Data came from <a href="https://waldronlab.io/curatedMetagenomicData/">curatedMetagenomicData</a>, using species-level profiles and one sample per person. Models were tested by leaving out each of 11 cancer studies in turn. The alert threshold aimed for 90% specificity using training data only.</p>
+      <p>An analysis plan was recorded before any profiles were downloaded or models were run. Two data errors were found by checks during the run: mixed taxonomic ranks and repeated sample IDs. Those results were discarded, the errors were fixed, and the changes were logged.</p>
+      <p id="checks"></p>
+      <p><a class="text-link" href="{{root}}research/">Read the research plan <span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+    </section>
+  </div>
+</div>
+
+<noscript>
+  <div class="wrap"><p>The charts on this page need JavaScript. The results are summarized here: {{resultsSummary}}</p></div>
+</noscript>
+<script type="application/json" id="results-data">{{resultsData}}</script>
+<script src="{{root}}assets/results.js" defer></script>

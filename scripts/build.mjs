@@ -12,6 +12,7 @@ const readJson = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'));
 
 const config = readJson('site.config.json');
 const research = readJson('content/research.json');
+const results = readJson('content/results.json');
 const siteUrl = (process.env.SITE_URL || config.siteUrl || '').replace(/\/+$/, '');
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -63,6 +64,12 @@ function renderResources() {
   }).join('\n');
 }
 
+function renderResultsSummary() {
+  const m = results.models['Logistic regression'];
+  const points = (x) => `${x >= 0 ? '+' : ''}${(x * 100).toFixed(1)}`;
+  return esc(`With the primary model, mean AUROC on unseen cancer studies was ${m.meanAuroc.toFixed(2)}, and the pooled excess alert rate in other conditions was ${points(m.pooled.estimate)} percentage points. These results are exploratory and not peer reviewed.`);
+}
+
 function parsePage(file) {
   const text = readFileSync(join(root, 'src/pages', file), 'utf8');
   const match = text.match(/^<!--\n([\s\S]*?)\n-->\n([\s\S]*)$/);
@@ -93,6 +100,8 @@ function renderPage(page) {
     linkedin: esc(config.linkedin),
     log: page.path === 'progress/' ? renderLog() : '',
     resources: page.path === 'progress/' ? renderResources() : '',
+    resultsData: page.path === 'results/' ? JSON.stringify(results).replace(/</g, '\\u003c') : '',
+    resultsSummary: page.path === 'results/' ? renderResultsSummary() : '',
   };
   const body = page.body.replace(/\{\{(\w+)\}\}/g, (_, k) => {
     if (!(k in replacements)) throw new Error(`Unknown placeholder {{${k}}} in ${page.path}`);

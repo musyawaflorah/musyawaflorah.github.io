@@ -4,6 +4,13 @@
   "log": [
     {
       "date": "2026-11-06",
+      "category": "Exploratory results",
+      "title": "First exploratory analysis completed",
+      "summary": "Public processed profiles were analyzed under a recorded plan, and preliminary results were posted. They have not had advisor or peer review, and labels are still being checked against the original papers.",
+      "links": [{ "label": "Preliminary results", "url": "../results/" }]
+    },
+    {
+      "date": "2026-11-06",
       "category": "Project status",
       "title": "Planned main analysis updated",
       "summary": "The planned main analysis is now a comparison across multiple conditions, with Crohn's disease as a descriptive pilot. No microbiome profiles have been downloaded, and no experiments or validation have been carried out.",
@@ -37,7 +44,7 @@
       "id": "dataset-audits",
       "title": "Dataset audits",
       "description": "Findings on dataset suitability, patient-level labels, patient identities, and repeated samples.",
-      "emptyText": "No audits have been completed yet.",
+      "emptyText": "A first metadata audit has been run and is under review. It has not been released.",
       "items": []
     },
     {
@@ -51,7 +58,7 @@
       "id": "reports",
       "title": "Reports",
       "description": "Experiment write-ups, including false positives, missed cancers, calibration, and limitations.",
-      "emptyText": "No reports have been released yet.",
+      "emptyText": "No formal reports have been released. Preliminary results are on the Results page.",
       "items": []
     },
     {
