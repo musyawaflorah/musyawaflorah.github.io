@@ -35,8 +35,8 @@
     var aucs = [lr.meanAuroc, rf.meanAuroc, gb.meanAuroc];
     var items = [
       ['Early-stage detection depended heavily on the study', 'Stage I sensitivity was ' + pct(stage(lr, 'I').sensitivity) + ' with the primary model and ' + pct(stage(gb, 'I').sensitivity) + ' with gradient boosting. Without one large Japanese study, it was ' + pct(noY(lr, 'I').sensitivity) + ' and ' + pct(noY(gb, 'I').sensitivity) + '. Results for stage 0 were low with all three models.'],
-      ['Model differences were partly about thresholds', 'At each model\'s own threshold, the pooled excess alert rate was ' + pts(lr.pooled.estimate) + ' points with logistic regression and ' + pts(gb.pooled.estimate) + ' with gradient boosting. Logistic regression also flagged fewer people overall. A later check that matched specificity narrowed the gap, so the data doesn\'t show that one model type is more disease-specific.'],
-      ['Alerts varied by condition', 'Liver cirrhosis and atherosclerotic cardiovascular disease stood out in single studies, while most other conditions were close to zero. These results come from single cohorts and need replication.'],
+      ['Model differences were partly about thresholds', 'At each model\'s own threshold, the pooled excess alert rate was ' + pts(lr.pooled.estimate) + ' points with logistic regression and ' + pts(gb.pooled.estimate) + ' with gradient boosting. Logistic regression also flagged fewer people overall. In a later check that matched specificity, every model showed extra alerts, including the primary setting. Intervals overlapped, so the data doesn\'t show that one model type is more disease-specific.'],
+      ['Alerts varied by model and condition', 'With the primary model, extra alerts were close to zero for most conditions. With random forest and gradient boosting, liver cirrhosis and atherosclerotic cardiovascular disease stood out. Each comes from a single study and needs replication.'],
       ['Cross-study performance was modest', 'Mean AUROC on unseen studies ranged from ' + Math.min.apply(null, aucs).toFixed(2) + ' to ' + Math.max.apply(null, aucs).toFixed(2) + ' across the three models.'],
     ];
     el('findings').innerHTML = items.map(function (i) { return '<article class="dash-finding"><h3>' + esc(i[0]) + '</h3><p>' + esc(i[1]) + '</p></article>'; }).join('');
@@ -44,7 +44,7 @@
 
   function tiles(m) {
     var items = [
-      [m.meanAuroc.toFixed(2), 'Mean AUROC', 'Across 11 unseen cancer studies'],
+      [m.meanAuroc.toFixed(2), 'Mean AUROC', 'Across ' + m.byStudy.length + ' unseen cancer studies'],
       [pct(m.sensitivity), 'Cancer sensitivity', 'At ' + pct(m.specificity) + ' held-out specificity'],
       [pts(m.pooled.estimate) + ' pts', 'Pooled excess alerts', '95% interval ' + interval(m.pooled.low, m.pooled.high, pts)],
       [String(data.n.training_people.toLocaleString('en-US')), 'People in training pool', data.n.training_cancer + ' with cancer, ' + data.n.training_controls + ' controls'],
@@ -128,7 +128,7 @@
     var range = function (d) { return pts(d.estimate) + ' (' + interval(d.low, d.high, pts) + ')'; };
     el('full-lead').textContent = 'The second model tried ' + f.candidates + ' setups and chose one using only training studies, inside each held-out fold. It chose ' + f.selected.toLowerCase() + ' as the final model. Its accuracy was no better than the first run\'s best models, but it\'s a fairer estimate because selection never used the study being tested.';
     var items = [
-      [f.meanAuroc.toFixed(2), 'Mean AUROC', interval(f.aurocRange[0], f.aurocRange[1], function (x) { return x.toFixed(2); }) + ' across 11 unseen studies'],
+      [f.meanAuroc.toFixed(2), 'Mean AUROC', interval(f.aurocRange[0], f.aurocRange[1], function (x) { return x.toFixed(2); }) + ' across ' + f.studies + ' unseen studies'],
       [pct(f.sensitivity), 'Cancer sensitivity', 'At ' + pct(f.specificity) + ' held-out specificity'],
       [pts(f.pooled.estimate) + ' pts', 'Pooled excess alerts', '95% interval ' + interval(f.pooled.low, f.pooled.high, pts) + ', ' + f.comparisons + ' comparisons'],
       [pts(f.ageStandardized.estimate) + ' pts', 'Adjusted for age', '95% interval ' + interval(f.ageStandardized.low, f.ageStandardized.high, pts)],

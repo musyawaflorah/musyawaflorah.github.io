@@ -16,7 +16,8 @@ path: results/
   <div class="wrap">
     <aside class="callout dash-notice" aria-label="How to read these results">
       <h2>Read this first</h2>
-      <p>These are exploratory results on public research data, from a first run and a fuller second model, both run November 6, 2026. They haven't had advisor or peer review, and disease labels are still being checked against the original papers. These numbers may change.</p>
+      <p>These are exploratory results on public research data, from a first run and a fuller second model. They haven't had advisor or peer review, and checks of disease labels against the original papers are still in progress. These numbers may change.</p>
+      <p><strong>Correction, November 8, 2026:</strong> a check against the original papers found that one cancer study, ThomasAM_2019_c, repeated 80 people from another, YachidaS_2019. Earlier versions of this page counted those people twice and included that study as an unseen test. It has been removed and every result here was rerun. With the first run's primary model, the pooled extra-alert rate fell from +2.1 to +0.7 points, and its interval now includes zero. The more accurate models still showed extra alerts. When specificity was matched across models, every model showed extra alerts, including the primary setting. Mean AUROC fell slightly for all models.</p>
       <p>This isn't a diagnostic test, a screening tool, or medical advice. Please take health questions to a qualified clinician.</p>
     </aside>
 
@@ -98,9 +99,10 @@ path: results/
 
     <section class="dash-section prose" aria-labelledby="methods-title">
       <h2 id="methods-title">How it was done</h2>
-      <p>Data came from <a href="https://waldronlab.io/curatedMetagenomicData/">curatedMetagenomicData</a>, using species-level profiles and one sample per person. Models were tested by leaving out each of 11 cancer studies in turn. The alert threshold aimed for 90% specificity using training data only.</p>
+      <p>Data came from <a href="https://waldronlab.io/curatedMetagenomicData/">curatedMetagenomicData</a>, using species-level profiles and one sample per person. Models were tested by leaving out each of 10 cancer studies in turn. One more study was left out because it repeats people from another. The alert threshold aimed for 90% specificity using training data only.</p>
       <p>An analysis plan was recorded before any profiles were downloaded or models were run. Two data errors were found by checks during the run: mixed taxonomic ranks and repeated sample IDs. Those results were discarded, the errors were fixed, and the changes were logged.</p>
       <p>The second model followed a new plan recorded before it was trained. It tried 10 model setups and chose one inside each held-out fold, using only the training studies. It also fitted feature settings inside each training set and added calibration and age-standardized results.</p>
+      <p>Earlier studies have tested colorectal cancer models on people with some of these conditions, including type 2 diabetes, Parkinson's disease, and inflammatory bowel disease (<a href="https://pubmed.ncbi.nlm.nih.gov/30936547/">Wirbel and colleagues, 2019</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/30936548/">Thomas and colleagues, 2019</a>). This project adds more conditions, compares each with healthy controls from the same study, pools the results, and reports cancer stage alongside them.</p>
       <p id="checks"></p>
       <p><a class="text-link" href="{{root}}research/">Read the research plan <span class="arrow" aria-hidden="true">&rarr;</span></a></p>
     </section>
