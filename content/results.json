@@ -1681,5 +1681,115 @@
     "weight": -0.378
    }
   ]
+ },
+ "fullModel": {
+  "asOf": "2026-11-06",
+  "selected": "Gradient boosting",
+  "candidates": 10,
+  "meanAuroc": 0.772,
+  "aurocRange": [
+   0.472,
+   0.944
+  ],
+  "sensitivity": 0.462,
+  "specificity": 0.892,
+  "calibration": {
+   "brier": 0.194,
+   "intercept": 0.012,
+   "slope": 0.971
+  },
+  "pooled": {
+   "estimate": 0.087,
+   "low": 0.038,
+   "high": 0.136
+  },
+  "ageStandardized": {
+   "estimate": 0.089,
+   "low": 0.039,
+   "high": 0.139
+  },
+  "noMetaCardis": {
+   "estimate": 0.082,
+   "low": 0.006,
+   "high": 0.158
+  },
+  "comparisons": 19,
+  "shuffled": 0.507,
+  "comparison": [
+   {
+    "model": "Logistic regression (first-run setting)",
+    "auroc": 0.722,
+    "trained": {
+     "estimate": 0.016,
+     "low": 0.001,
+     "high": 0.03
+    },
+    "matched": {
+     "estimate": 0.053,
+     "low": 0.01,
+     "high": 0.097
+    },
+    "separation": 0.574,
+    "specificity": 0.969
+   },
+   {
+    "model": "Logistic regression, stronger regularization",
+    "auroc": 0.767,
+    "trained": {
+     "estimate": 0.069,
+     "low": 0.037,
+     "high": 0.1
+    },
+    "matched": {
+     "estimate": 0.116,
+     "low": 0.058,
+     "high": 0.174
+    },
+    "separation": 0.619,
+    "specificity": 0.89
+   },
+   {
+    "model": "Random forest",
+    "auroc": 0.779,
+    "trained": {
+     "estimate": 0.051,
+     "low": 0.022,
+     "high": 0.08
+    },
+    "matched": {
+     "estimate": 0.098,
+     "low": 0.042,
+     "high": 0.154
+    },
+    "separation": 0.608,
+    "specificity": 0.916
+   },
+   {
+    "model": "Gradient boosting (final model)",
+    "auroc": 0.794,
+    "trained": {
+     "estimate": 0.087,
+     "low": 0.038,
+     "high": 0.136
+    },
+    "matched": {
+     "estimate": 0.109,
+     "low": 0.05,
+     "high": 0.168
+    },
+    "separation": 0.602,
+    "specificity": 0.908
+   }
+  ],
+  "species": [
+   "Peptostreptococcus stomatis",
+   "Fusobacterium nucleatum",
+   "Gemella morbillorum",
+   "Dialister pneumosintes",
+   "Streptococcus salivarius",
+   "Porphyromonas asaccharolytica",
+   "Eubacterium eligens",
+   "Parvimonas micra"
+  ]
  }
 }

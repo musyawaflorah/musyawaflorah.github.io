@@ -3,6 +3,13 @@
 
   "log": [
     {
+      "date": "2026-11-08",
+      "category": "Exploratory results",
+      "title": "Fuller second model added",
+      "summary": "A second model chose among 10 setups using only training studies, with calibration, age adjustment, and a fairer model comparison. Its accuracy was similar to the first run. It was designed after first-run results were seen, so it isn't independent validation. The first run's model comparison was also corrected.",
+      "links": [{ "label": "Preliminary results", "url": "../results/" }]
+    },
+    {
       "date": "2026-11-06",
       "category": "Exploratory results",
       "title": "First exploratory analysis completed",

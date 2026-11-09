@@ -35,7 +35,7 @@
     var aucs = [lr.meanAuroc, rf.meanAuroc, gb.meanAuroc];
     var items = [
       ['Early-stage detection depended heavily on the study', 'Stage I sensitivity was ' + pct(stage(lr, 'I').sensitivity) + ' with the primary model and ' + pct(stage(gb, 'I').sensitivity) + ' with gradient boosting. Without one large Japanese study, it was ' + pct(noY(lr, 'I').sensitivity) + ' and ' + pct(noY(gb, 'I').sensitivity) + '. Results for stage 0 were low with all three models.'],
-      ['Stronger models raised more off-target alerts', 'The pooled excess alert rate was ' + pts(lr.pooled.estimate) + ' points with logistic regression and ' + pts(gb.pooled.estimate) + ' points with gradient boosting. Differences in alert rates also reflect the sensitivity each threshold reached.'],
+      ['Model differences were partly about thresholds', 'At each model\'s own threshold, the pooled excess alert rate was ' + pts(lr.pooled.estimate) + ' points with logistic regression and ' + pts(gb.pooled.estimate) + ' with gradient boosting. Logistic regression also flagged fewer people overall. A later check that matched specificity narrowed the gap, so the data doesn\'t show that one model type is more disease-specific.'],
       ['Alerts varied by condition', 'Liver cirrhosis and atherosclerotic cardiovascular disease stood out in single studies, while most other conditions were close to zero. These results come from single cohorts and need replication.'],
       ['Cross-study performance was modest', 'Mean AUROC on unseen studies ranged from ' + Math.min.apply(null, aucs).toFixed(2) + ' to ' + Math.max.apply(null, aucs).toFixed(2) + ' across the three models.'],
     ];
@@ -123,6 +123,24 @@
     tiles(m); forest(m); stages(m); studies(m);
   }
 
-  findings(); render(); aware(); species();
+  function fullModel() {
+    var f = data.fullModel;
+    var range = function (d) { return pts(d.estimate) + ' (' + interval(d.low, d.high, pts) + ')'; };
+    el('full-lead').textContent = 'The second model tried ' + f.candidates + ' setups and chose one using only training studies, inside each held-out fold. It chose ' + f.selected.toLowerCase() + ' as the final model. Its accuracy was no better than the first run\'s best models, but it\'s a fairer estimate because selection never used the study being tested.';
+    var items = [
+      [f.meanAuroc.toFixed(2), 'Mean AUROC', interval(f.aurocRange[0], f.aurocRange[1], function (x) { return x.toFixed(2); }) + ' across 11 unseen studies'],
+      [pct(f.sensitivity), 'Cancer sensitivity', 'At ' + pct(f.specificity) + ' held-out specificity'],
+      [pts(f.pooled.estimate) + ' pts', 'Pooled excess alerts', '95% interval ' + interval(f.pooled.low, f.pooled.high, pts) + ', ' + f.comparisons + ' comparisons'],
+      [pts(f.ageStandardized.estimate) + ' pts', 'Adjusted for age', '95% interval ' + interval(f.ageStandardized.low, f.ageStandardized.high, pts)],
+    ];
+    el('full-tiles').innerHTML = items.map(function (t) { return '<div class="dash-tile"><strong>' + esc(t[0]) + '</strong><span>' + esc(t[1]) + '</span><small>' + esc(t[2]) + '</small></div>'; }).join('');
+    el('full-note').textContent = 'Without the largest cohort, the pooled excess was ' + range(f.noMetaCardis) + ' points. Calibration slope was ' + f.calibration.slope.toFixed(2) + ' and intercept ' + f.calibration.intercept.toFixed(2) + ', but only for this study mix, which is about half cancer, so scores aren\'t real-world probabilities. With labels shuffled, mean AUROC was ' + f.shuffled.toFixed(2) + ', close to chance.';
+    el('compare-table').innerHTML = table(['Model', 'Cancer AUROC', 'Mean held-out specificity', 'Excess alerts at own threshold', 'Excess alerts at matched 90% specificity'], f.comparison.map(function (m) {
+      return [m.model, m.auroc.toFixed(2), pct(m.specificity), range(m.trained), range(m.matched)];
+    }));
+    el('full-species').innerHTML = f.species.map(function (s) { return '<li><em>' + esc(s) + '</em></li>'; }).join('');
+  }
+
+  findings(); render(); aware(); species(); fullModel();
   el('checks').textContent = 'As a leakage check, labels were shuffled within each study and the primary model was rerun five times. Mean AUROC ranged from ' + Math.min.apply(null, data.shuffled).toFixed(2) + ' to ' + Math.max.apply(null, data.shuffled).toFixed(2) + ', close to the 0.50 expected by chance.';
 })();

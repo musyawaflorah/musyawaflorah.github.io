@@ -16,7 +16,7 @@ path: results/
   <div class="wrap">
     <aside class="callout dash-notice" aria-label="How to read these results">
       <h2>Read this first</h2>
-      <p>This is a first exploratory run on public research data, last updated November 6, 2026. It hasn't had advisor or peer review, and disease labels are still being checked against the original papers. These numbers may change.</p>
+      <p>These are exploratory results on public research data, from a first run and a fuller second model, both run November 6, 2026. They haven't had advisor or peer review, and disease labels are still being checked against the original papers. These numbers may change.</p>
       <p>This isn't a diagnostic test, a screening tool, or medical advice. Please take health questions to a qualified clinician.</p>
     </aside>
 
@@ -29,6 +29,20 @@ path: results/
       </div>
       <p class="note">Logistic regression was chosen as the primary model before any results were seen. The other two are sensitivity analyses.</p>
       <div class="dash-tiles" id="tiles"></div>
+    </section>
+
+    <section class="dash-section" aria-labelledby="full-title">
+      <h2 id="full-title">A fuller second model</h2>
+      <p class="dash-lead" id="full-lead"></p>
+      <div class="dash-tiles" id="full-tiles"></div>
+      <p class="note" id="full-note"></p>
+      <h3>Comparing models fairly</h3>
+      <p class="dash-lead">Each model flags a different share of healthy people at its own threshold, which can make one look more disease-specific than it is. This check also sets each threshold so 90% of controls in each comparison aren't flagged.</p>
+      <div class="dash-table-wrap" id="compare-table"></div>
+      <p class="note">This comparison was added after earlier results were seen. Model accuracy here is optimistic, because these four setups were fixed after the first run. Intervals overlap widely.</p>
+      <h3>Microbes the second model relied on most</h3>
+      <p class="dash-lead">Shuffling these species lowered accuracy on unseen studies the most. That shows what the model used, not what causes cancer.</p>
+      <div class="dash-species"><div><ol id="full-species"></ol></div></div>
     </section>
 
     <section class="dash-section" aria-labelledby="alerts-title">
@@ -75,6 +89,7 @@ path: results/
         <li><strong>Confirmed false positives:</strong> comparison cohorts usually weren't confirmed to be cancer-free.</li>
         <li><strong>Clinical performance:</strong> these models aren't approved tests and shouldn't guide care.</li>
         <li><strong>Prediction before diagnosis:</strong> samples were collected at or after diagnosis.</li>
+        <li><strong>Independent validation:</strong> the second model was designed after first-run results on the same studies were seen, so new cohorts are still needed.</li>
         <li><strong>Reliable results for small groups:</strong> some rows include only a few people, and the Crohn's disease pilot has 43 adults.</li>
         <li><strong>Truly healthy controls in every study:</strong> one Crohn's study's "healthy" metadata label covers non-IBD participants, including some with symptoms.</li>
         <li><strong>One-study independence:</strong> several conditions come from one study, and one large cohort supplies most of the type 2 diabetes data.</li>
@@ -85,6 +100,7 @@ path: results/
       <h2 id="methods-title">How it was done</h2>
       <p>Data came from <a href="https://waldronlab.io/curatedMetagenomicData/">curatedMetagenomicData</a>, using species-level profiles and one sample per person. Models were tested by leaving out each of 11 cancer studies in turn. The alert threshold aimed for 90% specificity using training data only.</p>
       <p>An analysis plan was recorded before any profiles were downloaded or models were run. Two data errors were found by checks during the run: mixed taxonomic ranks and repeated sample IDs. Those results were discarded, the errors were fixed, and the changes were logged.</p>
+      <p>The second model followed a new plan recorded before it was trained. It tried 10 model setups and chose one inside each held-out fold, using only the training studies. It also fitted feature settings inside each training set and added calibration and age-standardized results.</p>
       <p id="checks"></p>
       <p><a class="text-link" href="{{root}}research/">Read the research plan <span class="arrow" aria-hidden="true">&rarr;</span></a></p>
     </section>
